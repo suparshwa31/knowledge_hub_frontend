@@ -12,6 +12,8 @@ import Upload from "./pages/Upload";
 import Search from "./pages/Search";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import Loginpage from "./app/auth/login/Loginpage"
+import SignupPage from "./app/auth/sign-up/page"
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/upload" element={<Upload />} />
           <Route path="/search" element={<Search />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/auth/login" element={<Loginpage />} />
+          <Route path="/auth/sign-up" element={<SignupPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

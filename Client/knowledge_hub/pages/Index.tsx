@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/ui/Navbar";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -21,33 +22,7 @@ import {
 export default function Index() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      {/* Navigation */}
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Brain className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold text-foreground">Knowledge Hub</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <Link to="/search" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Search
-              </Link>
-              <Link to="/upload" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Upload
-              </Link>
-              <Link to="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Dashboard
-              </Link>
-              <Button variant="outline" size="sm">Sign In</Button>
-              <Button size="sm">Get Started</Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar />
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center space-y-8">
@@ -70,18 +45,17 @@ export default function Index() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="px-8 py-3">
-              <Link to="/upload" className="flex items-center">
-                Get Started Free
+            <Link to="/auth/sign-up">
+              <Button size="lg" className="px-8 py-3">
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" className="px-8 py-3">
-              <Link to="/search" className="flex items-center">
-                Try Demo Search
-                <Search className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
+            <Link to="/auth/login">
+              <Button variant="outline" size="lg" className="px-8 py-3">
+                Sign In
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -211,12 +185,12 @@ export default function Index() {
               Join thousands of teams using Knowledge Hub to make their documents searchable and actionable with AI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="px-8 py-3">
-                <Link to="/upload" className="flex items-center">
+              <Link to="/auth/sign-up">
+                <Button variant="secondary" size="lg" className="px-8 py-3">
                   Start Building Your Hub
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               <Button variant="outline" size="lg" className="px-8 py-3 text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary">
                 View Documentation
               </Button>
@@ -243,9 +217,7 @@ export default function Index() {
             <div className="space-y-3">
               <h4 className="font-semibold">Product</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <Link to="/search" className="block hover:text-foreground transition-colors">Search</Link>
-                <Link to="/upload" className="block hover:text-foreground transition-colors">Upload</Link>
-                <Link to="/dashboard" className="block hover:text-foreground transition-colors">Dashboard</Link>
+                {/* Removed Search, Upload, Dashboard links */}
               </div>
             </div>
             <div className="space-y-3">

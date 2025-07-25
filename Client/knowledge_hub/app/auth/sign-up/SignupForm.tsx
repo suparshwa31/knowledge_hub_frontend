@@ -14,17 +14,31 @@ export default function SignupForm() {
     setLoading(true);
     setError(null);
     setSuccess(null);
+
     try {
-      const res = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Sign up failed');
-      setSuccess('Check your email for a confirmation link!');
+        const res = await fetch('/api/auth/signup', { // or '/auth/signup'
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        // Check if response is JSON
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Server returned non-JSON response');
+        }
+
+        const data = await res.json();
+        
+        if (!res.ok) throw new Error(data.error || 'Sign up failed');
+        
+        setSuccess('Check your email for a confirmation link!');
     } catch (err: any) {
-      setError(err.message);
+        if (err.message.includes('Failed to fetch')) {
+            setError('Network error. Please check your connection.');
+        } else {
+            setError(err.message);
+        }
     }
     setLoading(false);
   };
